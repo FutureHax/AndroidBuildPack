@@ -1,6 +1,7 @@
 image: ubuntu:18.04
 
 before_script:
+  - apt-get update -y
   - add-apt-repository ppa:cncf-buildpacks/pack-cli
   - apt-get update -y
   - apt-get install pack-cli --no-install -qq
