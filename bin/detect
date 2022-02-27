@@ -3,11 +3,12 @@
 
 # This pack is valid for apps with an AndroidManifest.xml
 # TODO: Make this more intelligent, parse build.gradle?
-echo "Checking for Android Framework"
+display "Checking for Android Framework"
 
 if [[  $(find . -name  AndroidManifest.xml) ]]; then
-  echo "Android Framework"
+  echo "-----> Detect: Found an AndroidManifest.xml"
   exit 0
 else
+  echo "-----> Detect: Found no AndroidManifest.xml"
   exit 0
 fi
