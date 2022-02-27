@@ -5,8 +5,6 @@
 # TODO: Make this more intelligent, parse build.gradle?
 echo "Checking for Android Framework"
 
-exit 0
-
 if [[  $(find . -name  AndroidManifest.xml) ]]; then
   echo "Android Framework"
   exit 0
