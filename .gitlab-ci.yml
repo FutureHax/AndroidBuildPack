@@ -9,6 +9,7 @@ build:
   stage: build
   rules:
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_REF_NAME == "android"
   before_script:
     - apt-get update -y
     - apt-get install software-properties-common curl --no-install-recommends -qq
