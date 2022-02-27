@@ -3,9 +3,16 @@
 
 ROOT_DIR=$1
 
+echo "===> CI Project Directory: $CI_PROJECT_DIR"
 if [ -f $CI_PROJECT_DIR ]; then
   ROOT_DIR=$CI_PROJECT_DIR
 fi
+echo "===> Root Directory: $ROOT_DIR"
+
+echo "======>"
+echo "===> CI Project Directory Contents: $(ls ${CI_PROJECT_DIR})"
+echo "===> Root Directory Contents: $(ls ${ROOT_DIR})"
+echo "======>"
 
 if [ -f $CI_PROJECT_DIR/gradlew ]; then
   if [ -f $CI_PROJECT_DIR/app/src/main/AndroidManifest.xml ]; then
