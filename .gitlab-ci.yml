@@ -26,7 +26,7 @@ build:
     - curl "https://gitlab.com/api/v4/projects/gitlab-org%2Frelease-cli/packages/generic/release-cli/latest/release-cli-linux-amd64" --output release-cli
     - chmod +x ./release-cli
     - >
-      ./release-cli create --name $CI_COMMIT_BRANCH-$CI_JOB_ID --description "Publish futurehax-android-buildpack.cnb for $CI_COMMIT_BRANCH-$CI_COMMIT_REF_NAME-$CI_JOB_ID"
+      ./release-cli create --name $CI_COMMIT_REF_NAME-$CI_JOB_ID --description "Publish futurehax-android-buildpack.cnb for $CI_COMMIT_REF_NAME-$CI_JOB_ID"
       --tag-name job-$CI_JOB_ID --ref $CI_COMMIT_SHA
       --assets-link "{\"name\":\"futurehax-android-buildpack.cnb\",\"url\":\"${PACKAGE_REGISTRY_URL}/futurehax-android-buildpack.cnb\"}"
 
