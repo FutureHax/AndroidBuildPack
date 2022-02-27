@@ -1,0 +1,16 @@
+image: alpine:latest
+
+before_script:
+  - add-apt-repository ppa:cncf-buildpacks/pack-cli
+  - apt-get update -y
+  - sudo apt-get install pack-cli
+
+after_script:
+  - echo "After script section"
+  - echo "For example you might do some cleanup here"
+
+build1:
+  stage: build
+  script:
+    - pack buildpack package futurehax-android-buildpack --config ./package.toml --format file
+
