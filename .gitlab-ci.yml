@@ -8,7 +8,7 @@ before_script:
   - apt-get install pack-cli --no-install-recommends -qq
 
 after_script: 
-  - curl "https://gitlab.com/api/v4/projects/gitlab-org%2Frelease-cli/packages/generic/release-cli/latest/release-cli-darwin-amd64" --output release-cli
+  - curl "https://gitlab.com/api/v4/projects/gitlab-org%2Frelease-cli/packages/generic/release-cli/latest/release-cli-linux-amd64" --output release-cli
   - chmod +x ./release-cli
   - ./release-cli -v
 
