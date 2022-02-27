@@ -5,8 +5,6 @@ variables:
 stages:
   - build
 
-
-
 build:
   stage: build
   rules:
