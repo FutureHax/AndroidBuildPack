@@ -1,11 +1,13 @@
 #!/bin/sh
 
+(>&2 echo "$(ls $1)")
+exit 1
 
-if [ -f $1/build.gradle ]; then
-  echo "Android Gradle" 
-  // TODO: Parse file for better android attributes
-  exit 0
-else
-  (>&2 echo "Could not find a 'build.gradle' file! Please check that it exists at the project root and is commited to Git.")
-  exit 1
-fi
+#if [ -f $1/build.gradle ]; then
+#  echo "Android Gradle" 
+#  // TODO: Parse file for better android attributes
+#  exit 0
+#else
+#  (>&2 echo "Could not find a 'build.gradle' file! Please check that it exists at the project root and is commited to Git.")
+#  exit 1
+#fi
