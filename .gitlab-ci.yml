@@ -1,5 +1,9 @@
 image: cruizba/ubuntu-dind:19.03.11
-PACKAGE_REGISTRY_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/AndroidBuildPack/0.0.1"
+variables:
+  PACKAGE_REGISTRY_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/AndroidBuildPack/0.0.1"
+
+stages:
+  - build
 
 before_script:
   - apt-get update -y
@@ -11,7 +15,6 @@ before_script:
 after_script: 
   - curl "https://gitlab.com/api/v4/projects/gitlab-org%2Frelease-cli/packages/generic/release-cli/latest/release-cli-linux-amd64" --output release-cli
   - chmod +x ./release-cli
-
   - >
     ./release-cli create --name release-branch-$CI_JOB_ID --description release-branch-$CI_COMMIT_REF_NAME-$CI_JOB_ID
      --tag-name job-$CI_JOB_ID --ref $CI_COMMIT_SHA
@@ -21,6 +24,10 @@ build:
   stage: build
   script:
     - pack buildpack package futurehax-android-buildpack --config ./package.toml --format file
-    - curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file futurehax-android-buildpack.cnb ${PACKAGE_REGISTRY_URL}/futurehax-android-buildpack.cnb"
+    - >
+      'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" 
+      --upload-file ./futurehax-android-buildpack.cnb 
+      "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/androidBuildpack/0.0.1/futurehax-android-buildpack.cnb"'
+
     
 
