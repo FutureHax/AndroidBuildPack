@@ -27,7 +27,7 @@ build:
     - chmod +x ./release-cli
     - >
       ./release-cli create --name $CI_COMMIT_REF_NAME-$CI_JOB_ID --description "Publish futurehax-android-buildpack.cnb for $CI_COMMIT_REF_NAME-$CI_JOB_ID"
-      --tag-name job-$CI_JOB_ID --ref $CI_COMMIT_SHA
+      --tag-name $CI_COMMIT_REF_NAME-$CI_JOB_ID --ref $CI_COMMIT_SHA
       --assets-link "{\"name\":\"futurehax-android-buildpack.cnb\",\"url\":\"${PACKAGE_REGISTRY_URL}/futurehax-android-buildpack.cnb\"}"
 
     
