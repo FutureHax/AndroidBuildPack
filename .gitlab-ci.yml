@@ -2,12 +2,19 @@ image: cruizba/ubuntu-dind:19.03.11
 
 before_script:
   - apt-get update -y
-  - apt-get install software-properties-common --no-install-recommends -qq
+  - apt-get install software-properties-common curl --no-install-recommends -qq
   - add-apt-repository ppa:cncf-buildpacks/pack-cli
   - apt-get update -y
   - apt-get install pack-cli --no-install-recommends -qq
 
-after_script:
+after_script: 
+  - BINARY_NAME=release-cli-darwin-amd64
+  - curl "https://gitlab.com/api/v4/projects/gitlab-org%2Frelease-cli/packages/generic/release-cli/latest/$BINARY_NAME" --output release-cli
+
+  - chmod +x ./release-cli
+  - ./release-cli -v
+
+
   - echo "After script section"
   - echo "For example you might do some cleanup here"
 
