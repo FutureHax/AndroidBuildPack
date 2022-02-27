@@ -1,0 +1,22 @@
+api = "0.4"
+
+[buildpack]
+id = "heroku/android"
+version = "0.0.1"
+name = "Android"
+homepage = "https://gitlab.futurehax.com/FutureHax/androidbuildpack"
+description = "In developmemnt Buildpack for Android applications"
+keywords = ["java", "jvm", "jdk", "openjdk", "gradle", "gradlew", "android"]
+
+[[buildpack.licenses]]
+type = "BSD-3-Clause"
+
+[[stacks]]
+id = "heroku-18"
+
+[metadata]
+
+[metadata.release]
+
+#[metadata.release.docker]
+#repository = "public.ecr.aws/heroku-buildpacks/heroku-jvm-buildpack"
