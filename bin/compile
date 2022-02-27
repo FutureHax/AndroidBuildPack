@@ -6,6 +6,7 @@ ANDROID_HOME="${HOME}/sdk"
 # The command line tools expect to be in <sdk>/cmdline-tools/latest by default
 ANDROID_TOOLS="${ANDROID_HOME}/cmdline-tools/latest/bin"
 
+
 # To find the latest version, check https://developer.android.com/studio#downloads under 
 # "Command line tools only"
 VERSION_SDK_TOOLS="8092744"
@@ -14,7 +15,7 @@ indent() {
   sed -u 's/^/       /'
 }
 
-echo "-----> Found an AndroidManifest.xml"
+echo "-----> Found an Android Application"
 
 # Download and install the Android commandline tools package, and move it to the 
 # default expected location
@@ -41,7 +42,7 @@ SDK_PACKAGES
 "${ANDROID_TOOLS}"/sdkmanager --package_file="${ANDROID_HOME}"/packages.txt
 
 # Update all installed sdk packages
-mkdir -p /root/.android
-touch /root/.android/repositories.cfg
+mkdir -p ~/.android
+touch ~/.android/repositories.cfg
 "${ANDROID_TOOLS}"/sdkmanager --update
 

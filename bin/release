@@ -2,10 +2,9 @@
 
 cat << EOF
 ---
-addons:
-  - shared-database:5mb
+
 config_vars:
-  PATH: bin:/usr/bin:/bin
+  PATH: bin:/usr/bin:/bin:~/sdk/cmdline-tools/latest/bin:~/sdk/
 default_process_types:
   android: gradlew
 EOF
