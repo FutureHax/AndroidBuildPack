@@ -1,20 +1,11 @@
 #!/bin/sh
 
 
-if [ -f $1/gradlew ]; then
-  echo "Gradle" && exit 0
-
-# Detect these Gradle specific files, so we can fail with a message
-# asking the user to enable the Gradle Wrapper for their project.
-elif [ -f $1/build.gradle ]; then
+if [ -f $1/build.gradle ]; then
   echo "Gradle" 
   // TODO: Parse file for android attributes
   exit 0
-elif [ -f $1/settings.gradle ]; then
-  echo "Gradle"
-  // TODO: Parse file for android attributes
-  exit 0
 else
-  (>&2 echo "Could not find a 'gradlew' script or a 'build.gradle' file! Please check that they exist and are commited to Git.")
+  (>&2 echo "Could not find a 'build.gradle' file! Please check that it exists and is commited to Git.")
   exit 1
 fi
