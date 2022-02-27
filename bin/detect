@@ -1,14 +1,20 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 
-# This pack is valid for apps with an AndroidManifest.xml
-# TODO: Make this more intelligent, parse build.gradle?
-display "Checking for Android Framework"
+if [ -f $1/gradlew ]; then
+  echo "Gradle" && exit 0
 
-if [[  $(find . -name  AndroidManifest.xml) ]]; then
-  echo "-----> Detect: Found an AndroidManifest.xml"
+# Detect these Gradle specific files, so we can fail with a message
+# asking the user to enable the Gradle Wrapper for their project.
+elif [ -f $1/build.gradle ]; then
+  echo "Gradle" 
+  // TODO: Parse file for android attributes
+  exit 0
+elif [ -f $1/settings.gradle ]; then
+  echo "Gradle"
+  // TODO: Parse file for android attributes
   exit 0
 else
-  echo "-----> Detect: Found no AndroidManifest.xml"
-  exit 0
+  (>&2 echo "Could not find a 'gradlew' script or a 'build.gradle' file! Please check that they exist and are commited to Git.")
+  exit 1
 fi
