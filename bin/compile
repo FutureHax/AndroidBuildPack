@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Install specified Java via heroku-buildpack-jvm-common 
 # https://elements.heroku.com/buildpacks/heroku/heroku-buildpack-jvm-common
