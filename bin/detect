@@ -1,6 +1,9 @@
 #!/bin/sh
 
-(>&2 echo "$(ls $1)")
+ls $1
+echo $1
+echo $(ls $1)
+(>&2 echo "Bye")
 exit 1
 
 #if [ -f $1/build.gradle ]; then
