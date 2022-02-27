@@ -21,7 +21,7 @@ echo "-----> Found an Android Application"
 # default expected location
 mkdir -p "${ANDROID_HOME}"/cmdline-tools
 curl -s https://dl.google.com/android/repository/commandlinetools-linux-${VERSION_SDK_TOOLS}_latest.zip > /tmp/cmdline-tools.zip
-unzip /tmp/cmdline-tools.zip -d "${ANDROID_HOME}"/cmdline-tools
+unzip -qq /tmp/cmdline-tools.zip -d "${ANDROID_HOME}"/cmdline-tools
 mv "${ANDROID_HOME}"/cmdline-tools/cmdline-tools "${ANDROID_HOME}"/cmdline-tools/latest
 
 # Agree to required Android sdk licenses
