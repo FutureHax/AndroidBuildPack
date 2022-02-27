@@ -1,5 +1,5 @@
 [buildpack]
 uri = "."
 
-[[dependencies]]
-uri = "docker://public.ecr.aws/heroku-buildpacks/heroku-jvm-buildpack@sha256:778e2046ce36871e0bcf5fdc76fc88135a1d35a48003408748586b801385384d"
+#[[dependencies]]
+#uri = "docker://public.ecr.aws/heroku-buildpacks/heroku-jvm-buildpack@sha256:778e2046ce36871e0bcf5fdc76fc88135a1d35a48003408748586b801385384d"
