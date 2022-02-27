@@ -27,7 +27,7 @@ build:
     - >
       'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" 
       --upload-file ./futurehax-android-buildpack.cnb 
-      "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/androidBuildpack/0.0.1/futurehax-android-buildpack.cnb"'
+      "${PACKAGE_REGISTRY_URL}/futurehax-android-buildpack.cnb"'
 
     
 
