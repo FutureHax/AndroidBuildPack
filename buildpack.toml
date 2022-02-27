@@ -13,3 +13,8 @@ type = "BSD-3-Clause"
 
 [[stacks]]
 id = "heroku-18"
+
+[[order]]
+[[order.group]]
+id = "heroku/jvm"
+version = "0.0.1"
