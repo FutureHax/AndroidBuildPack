@@ -3,6 +3,10 @@
 ls $1
 echo $1
 echo $(ls $1)
+echo $CI_PROJECT_DIR
+ls $CI_PROJECT_DIR
+echo $(ls $CI_PROJECT_DIR)
+
 (>&2 echo "Bye")
 exit 1
 
