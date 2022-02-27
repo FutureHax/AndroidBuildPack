@@ -20,7 +20,7 @@ build1:
   stage: build
   script:
     - pack buildpack package futurehax-android-buildpack --config ./package.toml --format file
-    - ls
+    - echo "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/androidBuildpack/0.0.1/futurehax-android-buildpack.cnb"
     - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file futurehax-android-buildpack.cnb \
       "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/androidBuildpack/0.0.1/futurehax-android-buildpack.cnb"'
     
