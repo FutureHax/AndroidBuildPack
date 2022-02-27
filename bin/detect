@@ -1,20 +1,26 @@
-#!/bin/sh
+#!/usr/bin/env bash
+# bin/detect <build-dir>
 
-ls $1
-echo $1
-echo $(ls $1)
-echo $CI_PROJECT_DIR
-ls $CI_PROJECT_DIR
-echo $(ls $CI_PROJECT_DIR)
+ROOT_DIR=$1
 
-(>&2 echo "Bye")
-exit 1
+if [ -f $CI_PROJECT_DIR ]; then
+  ROOT_DIR=$CI_PROJECT_DIR
+fi
 
-#if [ -f $1/build.gradle ]; then
-#  echo "Android Gradle" 
-#  // TODO: Parse file for better android attributes
-#  exit 0
-#else
-#  (>&2 echo "Could not find a 'build.gradle' file! Please check that it exists at the project root and is commited to Git.")
-#  exit 1
-#fi
+if [ -f $CI_PROJECT_DIR/gradlew ]; then
+  if [ -f $CI_PROJECT_DIR/app/src/main/AndroidManifest.xml ]; then
+      echo "ANDROID!" && exit 0
+  fi
+  
+  echo "Gradle" && exit 0
+
+# Detect these Gradle specific files, so we can fail with a message
+# asking the user to enable the Gradle Wrapper for their project.
+elif [ -f $CI_PROJECT_DIR/build.gradle ]; then
+  echo "Gradle" && exit 0
+elif [ -f $CI_PROJECT_DIR/settings.gradle ]; then
+  echo "Gradle" && exit 0
+else
+  (>&2 echo "Could not find a 'gradlew' script or a 'build.gradle' file! Please check that they exist and are commited to Git.")
+  exit 1
+fi
