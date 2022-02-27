@@ -21,14 +21,14 @@ build:
 
   script:
     - pack buildpack package futurehax-android-buildpack --config ./package.toml
-    - docker tag futurehax-android-buildpack registry.futurehax.com/futurehax/androidbuildpack
-    - docker push registry.futurehax.com/futurehax/androidbuildpack
     # - pack buildpack package futurehax-android-buildpack --config ./package.toml --format file
     # - >
     #   curl --header "JOB-TOKEN: $CI_JOB_TOKEN" 
     #   --upload-file futurehax-android-buildpack.cnb 
     #   "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/AndroidBuildPack/0.0.1/futurehax-android-buildpack.cnb"
   after_script: 
+    - docker tag futurehax-android-buildpack {$CI_REGISTRY_IMAGE}
+    - docker push registry.futurehax.com/futurehax/androidbuildpack
     # - curl "https://gitlab.com/api/v4/projects/gitlab-org%2Frelease-cli/packages/generic/release-cli/latest/release-cli-linux-amd64" --output release-cli
     # - chmod +x ./release-cli
     # - >
