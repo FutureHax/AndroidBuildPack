@@ -1,9 +1,9 @@
-image: alpine:latest
+image: ubuntu:18.04
 
 before_script:
   - add-apt-repository ppa:cncf-buildpacks/pack-cli
   - apt-get update -y
-  - sudo apt-get install pack-cli
+  - apt-get install pack-cli --no-install -qq
 
 after_script:
   - echo "After script section"
