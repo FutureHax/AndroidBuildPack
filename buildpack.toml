@@ -2,7 +2,7 @@ api = "0.4"
 
 [buildpack]
 id = "kkyger/android-buildpack"
-version = "0.0.1"
+version = "0.0.2"
 name = "Android"
 homepage = "https://gitlab.futurehax.com/FutureHax/androidbuildpack"
 description = "In developmemnt Buildpack for Android applications"
@@ -11,7 +11,7 @@ keywords = ["java", "jvm", "jdk", "openjdk", "gradle", "gradlew", "android"]
 [[buildpack.licenses]]
 type = "BSD-3-Clause"
 
-#[[order]]
-#[[order.group]]
-#id = "heroku/jvm"
-#version = "0.1.12"
+[[order]]
+[[order.group]]
+id = "heroku/jvm"
+version = "0.1.12"
