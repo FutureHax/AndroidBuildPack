@@ -8,15 +8,15 @@ before_script:
   - apt-get install pack-cli --no-install-recommends -qq
 
 after_script: 
-  - BINARY_NAME=release-cli-darwin-amd64
-  - curl "https://gitlab.com/api/v4/projects/gitlab-org%2Frelease-cli/packages/generic/release-cli/latest/$BINARY_NAME" --output release-cli
-
+  - curl "https://gitlab.com/api/v4/projects/gitlab-org%2Frelease-cli/packages/generic/release-cli/latest/release-cli-darwin-amd64" --output release-cli
   - chmod +x ./release-cli
   - ./release-cli -v
 
+   - >
+    release-cli create --name release-branch-$CI_JOB_ID --description release-branch-$CI_COMMIT_REF_NAME-$CI_JOB_ID
+    --tag-name job-$CI_JOB_ID --ref $CI_COMMIT_SHA
+    --assets-link '{"name":"futurehax-android-buildpack.cnb","filepath":"./futurehax-android-buildpack.cnb"}'
 
-  - echo "After script section"
-  - echo "For example you might do some cleanup here"
 
 build1:
   stage: build
