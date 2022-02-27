@@ -3,19 +3,15 @@
 
 ROOT_DIR=$1
 
-echo "===> CI Project Directory: $CI_PROJECT_DIR"
-if [ -f $CI_PROJECT_DIR ]; then
-  ROOT_DIR=$CI_PROJECT_DIR
+if [ -f "${CI_PROJECT_DIR}" ]; then
+  ROOT_DIR="${CI_PROJECT_DIR}"
+  echo "===> Setting working directory from ${CI_PROJECT_DIR}"
+else 
+  echo "===> Setting working directory parameter $1"
 fi
-echo "===> Root Directory: $ROOT_DIR"
 
-echo "======>"
-echo "===> CI Project Directory Contents: $(ls ${CI_PROJECT_DIR})"
-echo "===> Root Directory Contents: $(ls ${ROOT_DIR})"
-echo "======>"
-
-if [ -f $CI_PROJECT_DIR/gradlew ]; then
-  if [ -f $CI_PROJECT_DIR/app/src/main/AndroidManifest.xml ]; then
+if [ -f "${ROOT_DIR}/gradlew ]; then
+  if [ -f "${ROOT_DIR}/app/src/main/AndroidManifest.xml ]; then
       echo "ANDROID!" && exit 0
   fi
   
@@ -23,9 +19,9 @@ if [ -f $CI_PROJECT_DIR/gradlew ]; then
 
 # Detect these Gradle specific files, so we can fail with a message
 # asking the user to enable the Gradle Wrapper for their project.
-elif [ -f $CI_PROJECT_DIR/build.gradle ]; then
+elif [ -f "${ROOT_DIR}/build.gradle" ]; then
   echo "Gradle" && exit 0
-elif [ -f $CI_PROJECT_DIR/settings.gradle ]; then
+elif [ -f "${ROOT_DIR}/settings.gradle" ]; then
   echo "Gradle" && exit 0
 else
   (>&2 echo "Could not find a 'gradlew' script or a 'build.gradle' file! Please check that they exist and are commited to Git.")
