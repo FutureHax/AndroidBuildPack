@@ -2,7 +2,7 @@
 
 # This pack is valid for apps with an AndroidManifest.xml
 # TODO: Make this more intelligent, parse build.gradle?
-if [ find . -name AndroidManifest.xml ]; then
+if [[ -n $(find . -name  AndroidManifest.xml) ]]; then
   echo "Android Framework"
   exit 0
 else
