@@ -2,7 +2,7 @@ api = "0.4"
 
 [buildpack]
 id = "kkyger/android-buildpack"
-version = "0.0.3"
+version = "0.0.4"
 name = "Android"
 homepage = "https://gitlab.futurehax.com/FutureHax/androidbuildpack"
 description = "In developmemnt Buildpack for Android applications"
