@@ -16,19 +16,25 @@ build:
     - add-apt-repository ppa:cncf-buildpacks/pack-cli
     - apt-get update -y
     - apt-get install pack-cli --no-install-recommends -qq
+    - mkdir ~/.docker
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > ~/.docker/config.json
+
   script:
-    - pack buildpack package futurehax-android-buildpack --config ./package.toml --format file
-    - >
-      curl --header "JOB-TOKEN: $CI_JOB_TOKEN" 
-      --upload-file futurehax-android-buildpack.cnb 
-      "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/AndroidBuildPack/0.0.1/futurehax-android-buildpack.cnb"
+    - pack buildpack package futurehax-android-buildpack --config ./package.toml
+    - docker tag futurehax-android-buildpack registry.futurehax.com/futurehax/androidbuildpack
+    - docker push registry.futurehax.com/futurehax/androidbuildpack
+    # - pack buildpack package futurehax-android-buildpack --config ./package.toml --format file
+    # - >
+    #   curl --header "JOB-TOKEN: $CI_JOB_TOKEN" 
+    #   --upload-file futurehax-android-buildpack.cnb 
+    #   "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/AndroidBuildPack/0.0.1/futurehax-android-buildpack.cnb"
   after_script: 
-    - curl "https://gitlab.com/api/v4/projects/gitlab-org%2Frelease-cli/packages/generic/release-cli/latest/release-cli-linux-amd64" --output release-cli
-    - chmod +x ./release-cli
-    - >
-      ./release-cli create --name $CI_COMMIT_REF_NAME-$CI_JOB_ID --description "Publish futurehax-android-buildpack.cnb for $CI_COMMIT_REF_NAME-$CI_JOB_ID"
-      --tag-name $CI_COMMIT_REF_NAME-$CI_JOB_ID --ref $CI_COMMIT_SHA
-      --assets-link "{\"name\":\"futurehax-android-buildpack.cnb\",\"url\":\"${PACKAGE_REGISTRY_URL}/futurehax-android-buildpack.cnb\"}"
+    # - curl "https://gitlab.com/api/v4/projects/gitlab-org%2Frelease-cli/packages/generic/release-cli/latest/release-cli-linux-amd64" --output release-cli
+    # - chmod +x ./release-cli
+    # - >
+    #   ./release-cli create --name $CI_COMMIT_REF_NAME-$CI_JOB_ID --description "Publish futurehax-android-buildpack.cnb for $CI_COMMIT_REF_NAME-$CI_JOB_ID"
+    #   --tag-name $CI_COMMIT_REF_NAME-$CI_JOB_ID --ref $CI_COMMIT_SHA
+    #   --assets-link "{\"name\":\"futurehax-android-buildpack.cnb\",\"url\":\"${PACKAGE_REGISTRY_URL}/futurehax-android-buildpack.cnb\"}"
 
     
 
