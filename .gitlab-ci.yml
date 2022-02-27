@@ -17,14 +17,10 @@ after_script:
      --tag-name job-$CI_JOB_ID --ref $CI_COMMIT_SHA
      --assets-link '{"name":"futurehax-android-buildpack.cnb","url":"${PACKAGE_REGISTRY_URL}/futurehax-android-buildpack.cnb"}'
 
-
-build1:
+build:
   stage: build
   script:
     - pack buildpack package futurehax-android-buildpack --config ./package.toml --format file
-    - >
-      curl --header "JOB-TOKEN: $CI_JOB_TOKEN" 
-      --upload-file futurehax-android-buildpack.cnb 
-      ${PACKAGE_REGISTRY_URL}/futurehax-android-buildpack.cnb"
+    - curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file futurehax-android-buildpack.cnb ${PACKAGE_REGISTRY_URL}/futurehax-android-buildpack.cnb"
     
 
