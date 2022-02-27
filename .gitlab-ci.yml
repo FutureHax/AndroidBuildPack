@@ -27,10 +27,11 @@ build:
     #   --upload-file futurehax-android-buildpack.cnb 
     #   "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/AndroidBuildPack/0.0.1/futurehax-android-buildpack.cnb"
   after_script: 
-    - docker tag futurehax-android-buildpack "${CI_REGISTRY_IMAGE}:${VERSION}"
-    - docker tag futurehax-android-buildpack "${CI_REGISTRY_IMAGE}:latest"
-    - docker push "${CI_REGISTRY_IMAGE}:${VERSION}"
-    - docker push "${CI_REGISTRY_IMAGE}:latest"
+    - docker tag futurehax-android-buildpack ${CI_REGISTRY_IMAGE}:${VERSION}
+    - docker push ${CI_REGISTRY_IMAGE}:${VERSION}
+
+    # - docker tag futurehax-android-buildpack "${CI_REGISTRY_IMAGE}:latest"
+    # - docker push "${CI_REGISTRY_IMAGE}:latest"
     # - curl "https://gitlab.com/api/v4/projects/gitlab-org%2Frelease-cli/packages/generic/release-cli/latest/release-cli-linux-amd64" --output release-cli
     # - chmod +x ./release-cli
     # - >
