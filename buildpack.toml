@@ -11,10 +11,7 @@ keywords = ["java", "jvm", "jdk", "openjdk", "gradle", "gradlew", "android"]
 [[buildpack.licenses]]
 type = "BSD-3-Clause"
 
-[[stacks]]
-id = "heroku-18"
-
 [[order]]
 [[order.group]]
 id = "heroku/jvm"
-version = "0.0.1"
+version = "0.1.12"

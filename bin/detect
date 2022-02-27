@@ -1,11 +1,11 @@
 #!/bin/sh
 
 
-if [ -f $1/build.gradle ]; then
-  echo "Gradle" 
-  // TODO: Parse file for android attributes
+if [ -f $1/app/build.gradle ]; then
+  echo "Android Gradle" 
+  // TODO: Parse file for better android attributes
   exit 0
 else
-  (>&2 echo "Could not find a 'build.gradle' file! Please check that it exists and is commited to Git.")
+  (>&2 echo "Could not find a 'build.gradle' file! Please check that it exists at $1/app/build.gradle and is commited to Git.")
   exit 1
 fi
