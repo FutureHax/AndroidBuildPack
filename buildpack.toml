@@ -15,3 +15,7 @@ type = "BSD-3-Clause"
 [[order.group]]
 id = "heroku/jvm"
 version = "0.1.12"
+
+[[order.group]]
+id = "kkyger/android-buildpack"
+version = "0.0.2"
