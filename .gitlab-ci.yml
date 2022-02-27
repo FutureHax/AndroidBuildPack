@@ -10,19 +10,17 @@ before_script:
 after_script: 
   - curl "https://gitlab.com/api/v4/projects/gitlab-org%2Frelease-cli/packages/generic/release-cli/latest/release-cli-linux-amd64" --output release-cli
   - chmod +x ./release-cli
-  - >
-    ./release-cli create --name release-branch-$CI_JOB_ID --description release-branch-$CI_COMMIT_REF_NAME-$CI_JOB_ID
-    --tag-name job-$CI_JOB_ID --ref $CI_COMMIT_SHA
-    # --assets-link '{"name":"futurehax-android-buildpack.cnb","filepath":"./futurehax-android-buildpack.cnb"}'
+  # - >
+  #   ./release-cli create --name release-branch-$CI_JOB_ID --description release-branch-$CI_COMMIT_REF_NAME-$CI_JOB_ID
+  #   --tag-name job-$CI_JOB_ID --ref $CI_COMMIT_SHA
+  #    --assets-link '{"name":"futurehax-android-buildpack.cnb","filepath":"./futurehax-android-buildpack.cnb"}'
 
 
 build1:
   stage: build
   script:
     - pack buildpack package futurehax-android-buildpack --config ./package.toml --format file
-    - >
-      'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" 
-      --upload-file futurehax-android-buildpack.cnb 
+    - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file futurehax-android-buildpack.cnb \
       "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/androidBuildpack/0.0.1/futurehax-android-buildpack.cnb"'
     
 
