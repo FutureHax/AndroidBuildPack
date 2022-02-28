@@ -2,8 +2,8 @@
 FILE=$1/build.gradle
 
 
-if [ -e build.gradle ]; then echo "ok" else echo "ko" ; fi
-if [ -e $1/build.gradle ]; then echo "ok" else echo "ko" ; fi
+#if [ -e build.gradle ]; then echo "ok" else echo "ko" ; fi
+#if [ -e $1/build.gradle ]; then echo "ok" else echo "ko" ; fi
 
 ls $1/
 
