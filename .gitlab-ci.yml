@@ -24,7 +24,7 @@ build:
     - pack buildpack package futurehax-android-buildpack --config ./package.toml
     - docker tag futurehax-android-buildpack ${CI_REGISTRY_IMAGE}/${VERSION}:${CI_JOB_ID}
     - docker tag futurehax-android-buildpack ${CI_REGISTRY_IMAGE}:latest
-    - docker push  ${CI_REGISTRY_IMAGE}/${VERSION}:${CI_JOB_ID}
+    - docker push ${CI_REGISTRY_IMAGE}/${VERSION}:${CI_JOB_ID}
     - docker push ${CI_REGISTRY_IMAGE}:latest
     
 
