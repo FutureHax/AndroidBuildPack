@@ -5,9 +5,9 @@ ROOT_DIR=$1
 
 if [ -f "${CI_PROJECT_DIR}" ]; then
   ROOT_DIR="${CI_PROJECT_DIR}"
-  echo "===> Setting working directory from ${CI_PROJECT_DIR}"
+  echo "-----> Setting working directory from ${CI_PROJECT_DIR}"
 else 
-  echo "===> Setting working directory parameter $1"
+  echo "-----> Setting working directory parameter $1"
 fi
 
 if [ -f "${ROOT_DIR}/gradlew ]; then
