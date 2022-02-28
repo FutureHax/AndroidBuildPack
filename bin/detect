@@ -1,11 +1,6 @@
 #!/bin/sh
 
-manifest=app/src/main/AndroidManifest.xml
-
-ls app/src/
-ls app/src/main/
-
-grep android build.gradle
+if [ ! -z $(grep com.android.application  build.gradle) ]; then echo "FOUND"; fi
 
 if [ -f "${manifest}" ]; then
   echo "-----> Android Manifest Found!"
