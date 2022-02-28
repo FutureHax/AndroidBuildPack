@@ -1,5 +1,6 @@
 #!/bin/sh
 
+ls
 
 if [ -f $1/build.gradle ]; then
   echo "===> build.gradle detected"
