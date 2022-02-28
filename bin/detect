@@ -4,12 +4,14 @@ if [ -z ${CI_PROJECT_DIR+x} ]; then echo "CI_PROJECT_DIR is unset"; else echo "C
 
 env
 
+exit 1
+
 # this pack is valid for apps with a hello.txt in the root
-if [ -f $1/gradlew ]; then
-  echo "ANDROID!" && exit 0
-else
-  (>&2 echo "Could not find an 'AndroidManifest' file... Please check that it exists and is commited to Git. The usual location for this file is /app/src/main/AndroidManifest.xml")
-fi
+#if [ -f $1/gradlew ]; then
+#  echo "ANDROID!" && exit 0
+#else
+#  (>&2 echo "Could not find an 'AndroidManifest' file... Please check that it exists and is commited to Git. The usual location for this file is /app/src/main/AndroidManifest.xml")
+#fi
 
 #if [ -f "${CI_PROJECT_DIR}" ]; then
 #  ROOT_DIR="${CI_PROJECT_DIR}"

@@ -1,10 +1,1 @@
-#!/bin/sh
 
-cat << EOF
----
-
-config_vars:
-  PATH: bin:/usr/bin:/bin:~/sdk/cmdline-tools/latest/bin:~/sdk/
-default_process_types:
-  android: gradlew
-EOF
