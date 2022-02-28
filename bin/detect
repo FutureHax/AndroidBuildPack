@@ -2,4 +2,3 @@
 
 
 grep -q "com.android.application" build.gradle; [ $? -eq 0 ] && echo "===> com.android.application plugin detected in build.gradle" && exit 0 || echo "$FAIL"
-exit 1
