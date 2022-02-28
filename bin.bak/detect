@@ -1,26 +1,12 @@
 #!/bin/sh
 
-ROOT_DIR=$1
+ls
+ls build.grdle
 
-if [ -f "${CI_PROJECT_DIR}" ]; then
-  ROOT_DIR="${CI_PROJECT_DIR}"
-  echo "-----> Setting working directory from ${CI_PROJECT_DIR}"
-else 
-  echo "-----> Setting working directory parameter $1"
-fi
-
-if [ -f "${ROOT_DIR}/app/src/main/AndroidManifest.xml" ]; then
-  echo "ANDROID!" && exit 0
-else 
-  (>&2 echo "Could not find an 'AndroidManifest' file... Please check that it exists and is commited to Git. The usual location for this file is /app/src/main/AndroidManifest.xml")
-fi
-
-
-
-if [[ ! -s build.gradle ]]; then
-  echo "===> Could not find your root build.gradle file."
+if [ -e build.gradle ]; then
+  grep -q "com.android.application" build.gradle; [ $? -eq 0 ] && echo "===> com.android.application plugin detected in build.gradle" || echo "$FAIL"
+  exit 0
+else
+  echo "Not Android"
   exit 1
-else 
-  echo "===> build.gradle detected"
-  grep -q "com.android.application" build.gradle; [ $? -eq 0 ] && echo "===> com.android.application plugin detected in build.gradle"  && exit 0 || echo "$FAIL" &&  exit 1
 fi
