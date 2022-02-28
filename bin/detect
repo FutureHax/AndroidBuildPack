@@ -1,13 +1,12 @@
 #!/bin/sh
 
-if [ -f $1/gradlew ]; then
-  echo "-----> Setting working directory from external"
-else 
-  echo "-----> Setting working directory parameter $1"
+# this pack is valid for apps with a hello.txt in the root
+if [ -f $1/hello.txt ]; then
+  echo "HelloFramework"
+  exit 0
+else
+  exit 1
 fi
-
-
-#ROOT_DIR=$1
 
 #if [ -f "${CI_PROJECT_DIR}" ]; then
 #  ROOT_DIR="${CI_PROJECT_DIR}"
@@ -19,5 +18,5 @@ fi
 #if [ -f "${ROOT_DIR}/app/src/main/AndroidManifest.xml" ]; then
 #  echo "ANDROID!" && exit 0
 #else 
-  (>&2 echo "Could not find an 'AndroidManifest' file... Please check that it exists and is commited to Git. The usual location for this file is /app/src/main/AndroidManifest.xml")
+#  (>&2 echo "Could not find an 'AndroidManifest' file... Please check that it exists and is commited to Git. The usual location for this file is /app/src/main/AndroidManifest.xml")
 #fi
