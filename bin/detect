@@ -2,7 +2,12 @@
 
 manifest=$1/app/src/main/AndroidManifest.xml
 
-# this pack is valid for apps with a hello.txt in the root
+ls $1/
+ls $1/app/
+ls $1/app/src/
+ls $1/app/src/main/
+
+
 if [ -f $manifest ]; then
   echo "Android Manifest Found!"
   exit 0

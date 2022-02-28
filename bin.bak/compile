@@ -19,8 +19,6 @@ ANDROID_TOOLS="${ANDROID_HOME}/cmdline-tools/latest/bin"
 # "Command line tools only"
 VERSION_SDK_TOOLS="8092744"
 
-echo "-----> Found an Android Application"
-
 # Download and install the Android commandline tools package, and move it to the 
 # default expected location
 mkdir -p "${ANDROID_HOME}"/cmdline-tools
