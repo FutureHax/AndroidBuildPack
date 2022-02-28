@@ -1,6 +1,13 @@
 #!/bin/sh
 
+echo "env --- "
+env
+echo " --- env"
+
+echo "1 --- "
 ls $1
+echo " --- 1"
+
 if [ -f $1 ]; then
   exit 1
 else 
