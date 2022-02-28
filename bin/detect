@@ -1,17 +1,15 @@
 #!/bin/sh
 
-manifest=$1/app/src/main/AndroidManifest.xml
+manifest=app/src/main/AndroidManifest.xml
 
-ls 
-ls app/
-ls /app/src/
-ls /app/src/main/
+ls app/src/
+ls app/src/main/
 
 
 if [ -f $manifest ]; then
-  echo "Android Manifest Found!"
+  echo "-----> Android Manifest Found!"
   exit 0
 else
-  echo "Could not find an 'AndroidManifest' file... Please check that it exists and is commited to Git. The usual location for this file is app/src/main/AndroidManifest.xml"
+  echo "-----> Could not find an 'AndroidManifest' file... Please check that it exists and is commited to Git. The usual location for this file is app/src/main/AndroidManifest.xml"
   exit 1
 fi
