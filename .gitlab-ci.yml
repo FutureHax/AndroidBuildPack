@@ -1,6 +1,6 @@
 image: cruizba/ubuntu-dind:19.03.11
 variables:
-  VERSION: 0.0.5
+  VERSION: 0.0.7
 stages:
   - build
 
