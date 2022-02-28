@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ -f $1/build.gradle ]; then
+if [ -f build.gradle ]; then
   echo "Android"
   exit 0
 else
