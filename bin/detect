@@ -1,6 +1,7 @@
 #!/bin/sh
 
-manifests=$(find . -name AndroidManifest.xml | wc -l)
+find . -name AndroidManifest.xml | wc -l
+
 ls $1
 if [ -f $1 ]; then
   exit 1
