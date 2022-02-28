@@ -20,8 +20,10 @@ build:
   script:
     - pack buildpack package futurehax-android-buildpack --config ./package.toml
   after_script: 
-    - docker tag futurehax-android-buildpack ${CI_REGISTRY_IMAGE}:${VERSION}
-    - docker push ${CI_REGISTRY_IMAGE}:${VERSION}
+    # - docker tag futurehax-android-buildpack ${CI_REGISTRY_IMAGE}:${VERSION}
+    # - docker push ${CI_REGISTRY_IMAGE}:${VERSION}
+    - docker tag futurehax-android-buildpack registry.futurehax.com/futurehax/androidbuildpack
+    - docker push registry.futurehax.com/futurehax/androidbuildpack
     - docker images
     
 
