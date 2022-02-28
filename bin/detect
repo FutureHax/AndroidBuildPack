@@ -10,20 +10,8 @@ else
   echo "-----> Setting working directory parameter $1"
 fi
 
-if [ -f "${ROOT_DIR}/gradlew ]; then
-  if [ -f "${ROOT_DIR}/app/src/main/AndroidManifest.xml ]; then
-      echo "ANDROID!" && exit 0
-  fi
-  
-  echo "Gradle" && exit 0
-
-# Detect these Gradle specific files, so we can fail with a message
-# asking the user to enable the Gradle Wrapper for their project.
-elif [ -f "${ROOT_DIR}/build.gradle" ]; then
-  echo "Gradle" && exit 0
-elif [ -f "${ROOT_DIR}/settings.gradle" ]; then
-  echo "Gradle" && exit 0
-else
-  (>&2 echo "Could not find a 'gradlew' script or a 'build.gradle' file! Please check that they exist and are commited to Git.")
-  exit 1
+if [ -f "${ROOT_DIR}/app/src/main/AndroidManifest.xml" ]; then
+  echo "ANDROID!" && exit 0
+else 
+  (>&2 echo "Could not find an 'AndroidManifest' file... Please check that it exists and is commited to Git. The usual location for this file is /app/src/main/AndroidManifest.xml")
 fi
