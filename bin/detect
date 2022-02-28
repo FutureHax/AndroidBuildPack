@@ -1,15 +1,10 @@
 #!/bin/sh
 FILE=$1/build.gradle
 
-
-echo $1
-ls $1
-
-ls $1/app
 ls
-ls app
+ls build.grdle
 
-if [ -e $1/build.gradle ]; then
+if [ -e build.gradle ]; then
   echo "Android"
   exit 0
 else
