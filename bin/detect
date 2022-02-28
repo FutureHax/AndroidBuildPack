@@ -1,16 +1,11 @@
 #!/bin/sh
 FILE=$1/build.gradle
 
-
-#if [ -e build.gradle ]; then echo "ok" else echo "ko" ; fi
-#if [ -e $1/build.gradle ]; then echo "ok" else echo "ko" ; fi
-
-ls $1/
-echo $PWD
+env
 
 grep -q "com.android.application" build.gradle; [ $? -eq 0 ] && echo "===> com.android.application plugin detected in build.gradle"   || echo "$FAIL"
 
-if [ -s $1/build.gradle ]; then
+if [ -s /workspace/build.gradle ]; then
   echo "Android"
   exit 0
 else
