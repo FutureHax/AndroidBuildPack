@@ -7,10 +7,10 @@ ls app/src/main/
 
 grep android build.gradle
 
-#if [ -f $manifest ]; then
-#  echo "-----> Android Manifest Found!"
-#  exit 0
-#else
-#  echo "-----> Could not find an 'AndroidManifest' file... Please check that it exists and is commited to Git. The expected location for this file is 'app/src/main/AndroidManifest.xml'"
+if [ -f "${manifest}" ]; then
+  echo "-----> Android Manifest Found!"
+  exit 0
+else
+  echo "-----> Could not find an 'AndroidManifest.xml' file! Please ensure your project is properly configured. The expected location for this file is 'app/src/main/AndroidManifest.xml'"
   exit 1
-#fi
+fi
