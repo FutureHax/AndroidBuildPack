@@ -1,7 +1,8 @@
 #!/bin/sh
 
 manifests=$(find . -name AndroidManifest.xml | wc -l)
-if [ $manifests -eq 0 ]; then
+ls $1
+if [ -f $1 ]; then
   exit 1
 else 
   echo "ANDROID!" && exit 0
