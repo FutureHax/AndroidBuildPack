@@ -1,17 +1,9 @@
-#!/usr/bin/env bash
-# bin/detect <build-dir>
+#!/bin/sh
 
-ROOT_DIR=$1
-
-if [ -f "${CI_PROJECT_DIR}" ]; then
-  ROOT_DIR="${CI_PROJECT_DIR}"
-  echo "-----> Setting working directory from ${CI_PROJECT_DIR}"
-else 
-  echo "-----> Setting working directory parameter $1"
-fi
-
-if [ -f "${ROOT_DIR}/app/src/main/AndroidManifest.xml" ]; then
-  echo "ANDROID!" && exit 0
-else 
-  (>&2 echo "Could not find an 'AndroidManifest' file... Please check that it exists and is commited to Git. The usual location for this file is /app/src/main/AndroidManifest.xml")
+# this pack is valid for apps with a hello.txt in the root
+if [ -f $1/hello.txt ]; then
+  echo "HelloFramework"
+  exit 0
+else
+  exit 1
 fi
