@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-FAIL="===> Could not find 'com.android.application' in your build.gradle! Please ensure your project is properly configured. This plugin is generally aplied to the root build.gradle"
-
-exit 0
+if [[ ! -f build.gradle ]]; then
+   exit 100
+fi
