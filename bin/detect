@@ -3,9 +3,12 @@ FILE=$1/build.gradle
 
 env
 
-grep -q "com.android.application" build.gradle; [ $? -eq 0 ] && echo "===> com.android.application plugin detected in build.gradle"   || echo "$FAIL"
+echo $1
+echo $2
 
-if [ -s /workspace/build.gradle ]; then
+grep -q "com.android.application" build.gradle; [ $? -eq 0 ] && echo "===> com.android.application plugin detected in build.gradle" || echo "$FAIL"
+
+if [ -e $1/build.gradle ]; then
   echo "Android"
   exit 0
 else
