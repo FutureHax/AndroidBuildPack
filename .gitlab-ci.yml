@@ -22,9 +22,9 @@ build:
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > ~/.docker/config.json
   script:
     - pack buildpack package futurehax-android-buildpack --config ./package.toml
-    - docker tag futurehax-android-buildpack ${CI_REGISTRY_IMAGE}:${VERSION}
+    - docker tag futurehax-android-buildpack ${CI_REGISTRY_IMAGE}/${VERSION}:${CI_JOB_ID}
     - docker tag futurehax-android-buildpack ${CI_REGISTRY_IMAGE}:latest
-    - docker push ${CI_REGISTRY_IMAGE}:${VERSION}
+    - docker push  ${CI_REGISTRY_IMAGE}/${VERSION}:${CI_JOB_ID}
     - docker push ${CI_REGISTRY_IMAGE}:latest
     
 
