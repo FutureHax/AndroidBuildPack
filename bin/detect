@@ -1,29 +1,16 @@
 #!/bin/sh
 
-if [ -z ${CI_PROJECT_DIR+x} ]; then echo "CI_PROJECT_DIR is unset"; else echo "CI_PROJECT_DIR is set to '$CI_PROJECT_DIR'"; fi
-
 env
 
-ls $CNB_BUILDPACK_DIR
-ls ~/
-ls 
-
 find / -name AndroidManifest.xml 2>/dev/null
-exit 1
 
 # this pack is valid for apps with a hello.txt in the root
-#if [ -f $1/gradlew ]; then
-#  echo "ANDROID!" && exit 0
-#else
+if [ -f $1/app/src/main/AndroidManifest.xml ]; then
+  echo "ANDROID!" && exit 0
+else
+  exit 1
 #  (>&2 echo "Could not find an 'AndroidManifest' file... Please check that it exists and is commited to Git. The usual location for this file is /app/src/main/AndroidManifest.xml")
-#fi
-
-#if [ -f "${CI_PROJECT_DIR}" ]; then
-#  ROOT_DIR="${CI_PROJECT_DIR}"
-#  echo "-----> Setting working directory from ${CI_PROJECT_DIR}"
-#else 
-#  echo "-----> Setting working directory parameter $1"
-#fi
+fi
 
 #if [ -f "${ROOT_DIR}/app/src/main/AndroidManifest.xml" ]; then
 #  echo "ANDROID!" && exit 0
