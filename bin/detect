@@ -1,7 +1,7 @@
 #!/bin/sh
 
 
-if [ -f build.gradle ]; then
+if [ -f $1/build.gradle ]; then
   echo "===> build.gradle detected"
   grep -q "com.android.application" build.gradle; [ $? -eq 0 ] && echo "===> com.android.application plugin detected in build.gradle" || echo "===> Could not find 'com.android.application' in your build.gradle! Please ensure your project is properly configured. This plugin is generally aplied to the root build.gradle"
   exit 0
