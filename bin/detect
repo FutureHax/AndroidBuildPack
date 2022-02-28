@@ -1,12 +1,11 @@
 #!/bin/sh
 FILE=$1/build.gradle
 
-env
 
 echo $1
-echo $2
+ls $1
 
-grep -q "com.android.application" build.gradle; [ $? -eq 0 ] && echo "===> com.android.application plugin detected in build.gradle" || echo "$FAIL"
+ls $1/app
 
 if [ -e $1/build.gradle ]; then
   echo "Android"
@@ -15,3 +14,4 @@ else
   echo "Not Android"
   exit 1
 fi
+grep -q "com.android.application" build.gradle; [ $? -eq 0 ] && echo "===> com.android.application plugin detected in build.gradle" || echo "$FAIL"
