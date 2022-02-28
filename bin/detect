@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 
-if [[ -n $(find . -name AndroidManifest.xml) ]]
-then
-  echo "ANDROID!" && exit 0
-else 
+manifests=$(find . -name AndroidManifest.xml | wc -l)
+if [ $manifests -eq 0 ]; then
   exit 1
-#  (>&2 echo "Could not find an 'AndroidManifest' file... Please check that it exists and is commited to Git. The usual location for this file is /app/src/main/AndroidManifest.xml")
+else 
+  echo "ANDROID!" && exit 0
 fi
