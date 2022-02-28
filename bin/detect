@@ -6,6 +6,8 @@ echo $1
 ls $1
 
 ls $1/app
+ls
+ls app
 
 if [ -e $1/build.gradle ]; then
   echo "Android"
