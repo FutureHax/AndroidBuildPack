@@ -7,7 +7,6 @@ if [ -f $1/gradlew ]; then
   echo "Android Manifest Found!"
   exit 0
 else
-  echo "Android Manifest Found!"
+  echo "Could not find an 'AndroidManifest' file... Please check that it exists and is commited to Git. The usual location for this file is /app/src/main/AndroidManifest.xml"
   exit 1
-#  (>&2 echo "Could not find an 'AndroidManifest' file... Please check that it exists and is commited to Git. The usual location for this file is /app/src/main/AndroidManifest.xml")
 fi
