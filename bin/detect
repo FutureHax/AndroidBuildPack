@@ -1,5 +1,4 @@
 #!/bin/sh
-set -eo pipefail
 
 echo $0 
 $SHELL 
