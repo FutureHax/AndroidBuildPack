@@ -1,8 +1,7 @@
-#!/usr/bin/env bash
-# bin/detect <build-dir>
+#!/bin/sh
 
-if [ -f $CI_PROJECT_DIR ]; then
-  echo "-----> Setting working directory from ${CI_PROJECT_DIR}"
+if [ -f $1/gradlew ]; then
+  echo "-----> Setting working directory from external"
 else 
   echo "-----> Setting working directory parameter $1"
 fi
