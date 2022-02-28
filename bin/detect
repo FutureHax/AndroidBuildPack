@@ -1,9 +1,10 @@
 #!/bin/sh
-FILE=$PWD/build.gradle
+FILE=$1/build.gradle
 
-if [ -f $FILE ]; then
+if [ -s $FILE ]; then
   echo "Android"
   exit 0
 else
+  echo "Android"
   exit 1
 fi
