@@ -1,10 +1,5 @@
 #!/bin/sh
 
-echo $0 
-$SHELL 
-echo $SHELL 
-$SHELL --version 
-
 
 if [ ! -s $1/build.gradle ]; then
    exit 1
