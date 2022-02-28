@@ -6,12 +6,11 @@ FILE=$1/build.gradle
 #if [ -e $1/build.gradle ]; then echo "ok" else echo "ko" ; fi
 
 ls $1/
+echo $PWD
 
 grep -q "com.android.application" build.gradle; [ $? -eq 0 ] && echo "===> com.android.application plugin detected in build.gradle"   || echo "$FAIL"
 
-test -f build.gradle
-
-if [ -s $PWD/build.gradle ]; then
+if [ -s $1/build.gradle ]; then
   echo "Android"
   exit 0
 else
