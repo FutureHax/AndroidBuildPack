@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # bin/detect <build-dir>
 
-if [ -f $1/hello.txt ]; then
-  echo "HelloFramework"
-  exit 0
-else
-  exit 1
+if [ -f $CI_PROJECT_DIR ]; then
+  echo "-----> Setting working directory from ${CI_PROJECT_DIR}"
+else 
+  echo "-----> Setting working directory parameter $1"
 fi
+
 
 #ROOT_DIR=$1
 
