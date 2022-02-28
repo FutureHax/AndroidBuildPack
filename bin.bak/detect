@@ -17,7 +17,7 @@ fi
 
 
 
-if [[ ! -f build.gradle ]]; then
+if [[ ! -s build.gradle ]]; then
   echo "===> Could not find your root build.gradle file."
   exit 1
 else 
