@@ -1,16 +1,50 @@
-#!/bin/sh
+#!/bin/bash
 
-indent() {
-  sed -u 's/^/       /'
-}
+# Install specified Java via heroku-buildpack-jvm-common 
+# https://elements.heroku.com/buildpacks/heroku/heroku-buildpack-jvm-common
+JVM_BUILDPACK_URL="https://buildpack-registry.s3.amazonaws.com/buildpacks/heroku/jvm.tgz"
+$mkdir -p /tmp/jvm-common
+curl --location $JVM_BUILDPACK_URL | tar xzm -C /tmp/jvm-common --strip-components=1
+source /tmp/jvm-common/bin/util
+source /tmp/jvm-common/bin/java
+install_java_with_overlay ${HOME}
 
-echo "-----> Found a hello.txt"
+# Our Android sdk location
+ANDROID_HOME="${HOME}/sdk"
 
-# if hello.txt is empty, abort the build
-if [ ! -s $1/hello.txt ]; then
-  echo "hello.txt was empty" | indent
-  exit 1
-fi
+# The command line tools expect to be in <sdk>/cmdline-tools/latest by default
+ANDROID_TOOLS="${ANDROID_HOME}/cmdline-tools/latest/bin"
 
-# replace hello with goodbye in a new file
-cat $1/hello.txt | sed -e "s/[Hh]ello/Goodbye/g" > $1/goodbye.txt
+# To find the latest version, check https://developer.android.com/studio#downloads under 
+# "Command line tools only"
+VERSION_SDK_TOOLS="8092744"
+
+# Download and install the Android commandline tools package, and move it to the 
+# default expected location
+mkdir -p "${ANDROID_HOME}"/cmdline-tools
+curl -s https://dl.google.com/android/repository/commandlinetools-linux-${VERSION_SDK_TOOLS}_latest.zip > /tmp/cmdline-tools.zip
+unzip -qq /tmp/cmdline-tools.zip -d "${ANDROID_HOME}"/cmdline-tools
+mv "${ANDROID_HOME}"/cmdline-tools/cmdline-tools "${ANDROID_HOME}"/cmdline-tools/latest
+
+# Agree to required Android sdk licenses
+mkdir -p "${ANDROID_HOME}"/licenses/
+printf "8933bad161af4178b1185d1a37fbf41ea5269c55\nd56f5187479451eabf01fb78af6dfcb131a6481e\n24333f8a63b6825ea9c5514f83c2829b004d1fee" > "${ANDROID_HOME}"/licenses/android-sdk-license 
+printf "84831b9409646a918e30573bab4c9c91346d8abd\n504667f4c0de7af1a06de9f4b1727b84351f2910" > "${ANDROID_HOME}"/licenses/android-sdk-preview-license 
+echo yes | "${ANDROID_TOOLS}"/sdkmanager --licenses >/dev/null
+
+# Create the list of sdk packages to install 
+cat > "${ANDROID_HOME}"/packages.txt <<'SDK_PACKAGES'
+add-ons;addon-google_apis-google-24
+build-tools;31.0.0
+extras;android;m2repository
+extras;google;m2repository
+extras;google;google_play_services
+platforms;android-31
+SDK_PACKAGES
+"${ANDROID_TOOLS}"/sdkmanager --package_file="${ANDROID_HOME}"/packages.txt
+
+# Update all installed sdk packages
+mkdir -p ~/.android
+touch ~/.android/repositories.cfg
+"${ANDROID_TOOLS}"/sdkmanager --update
+
